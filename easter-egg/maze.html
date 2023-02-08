@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔎</text></svg>">
+    <title>Labyrinthe | Maze</title>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "./lib/three.r146.module.js",
+                "gltfLoader" : "./lib/GLTFLoader.js"
+            }
+        }
+    </script>
+    <style>
+        html, body {
+            margin: 0;
+            height: 100%;
+            background-color: #333333;
+        }
+        #canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .menu {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #FFFFFF;
+            background: #333333;
+            text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
+            color: #FFFFFF;
+            background: #333333;
+            font-size: 40px;
+            width: 75%;
+        }
+        input {
+            box-shadow:inset 0px 34px 0px -15px #b54b3a;
+            background-color:#a73f2d;
+            border-radius:42px;
+            border:1px solid #241d13;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:28px;
+            font-weight:bold;
+            padding:9px 27px;
+            text-decoration:none;
+            text-shadow:0px -1px 0px #7a2a1d;
+        }
+        #reload-btn {
+            font-size: 14px;
+            padding: 4px 9px;
+            bottom: 10px;
+            left: 10px;
+            position: absolute;
+        }
+        #menu-level, #menu-won, #menu-lost, #reload-btn {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="menu" id="menu-title">
+            <h1>Le labyrinthe</h1>
+            <h3>Appuie sur la barre d'espace pour commencer !</h3>
+            <input type="button" value="Nouveau jeu" onclick=onLevel() />
+        </div>
+        <div class="menu" id="menu-level">
+            <h1>🛡️ Nouvelle partie 🛡️</h1>
+            <span>Commencer au niveau <input id="input-level" type="number" value="1" min="1" max="30"/> </span>
+            <hr/>
+            <input type="button" value="⚔️ C'est parti ⚔️" onclick=onLoadGame() />
+        </div>
+        <div class="menu" id="menu-won">
+            <h1>🥳 Tu as gagné cette partie 🥳</h1>
+            <span>Appuie sur la barre espace pour continuer !</span>
+            <hr/>
+            <input type="button" value="⚔️ Je suis prêt ⚔️" onclick=onNewGame() />
+        </div>
+        <div class="menu" id="menu-lost">
+            <h1>💀 Tu as perdu cette partie 💀</h1>
+            <span>Appuie sur la barre espace pour retourner dans... le LABYRINTHE !</span>
+            <hr/>
+            <input type="button" value="⚔️ J'y retourne ⚔️" onclick=onGame() />
+        </div>
+    </div>
+    <input id="reload-btn" type="button" value="🔃 Recommencer" onclick=window.location.reload() />
+    <canvas id="canvas" width="1200" height="600"></canvas>
+</body>
+<script type="module" src="maze.js"></script>
+</html>
